@@ -1,0 +1,27 @@
+description: Send data to a hae.sh stream
+inputs:
+  haesh_stream_header_name:
+    description: The stream ID
+    required: true
+  haesh_stream_header_value:
+    description: The header name of the API key
+    required: true
+  haesh_stream_id:
+    description: The header value, i.e. the secret API key itself
+    required: true
+name: 'Stream to hae.sh'
+runs:
+  steps:
+    - name: Cancel previous runs
+      uses: styfle/cancel-workflow-action@0.11.0
+    - name: Check out repo
+      uses: actions/checkout@v3
+    - name: Send data to hae.sh
+      run: |
+        curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "${{ inputs.haesh_stream_header_name }}: ${{ inputs.haesh_stream_header_value }}" \
+          -d '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}' \
+          https://api.dice.staging.hae.sh/streams/${{ inputs.haesh_stream_id }}
+      shell: bash
+  using: 'composite'
