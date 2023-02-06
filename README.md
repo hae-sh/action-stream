@@ -1,4 +1,5 @@
 # action-stream
+
 This is a GitHub Action that sends data from inside a CI/CD workflow to a [hae.sh](https://hae.sh/) stream.
 
 ## Note
@@ -25,9 +26,10 @@ jobs:
         # steps to deploy your app
 ```
 
-This will send an updated row to your stream everytime the workflow runs. The row ID will be the `github.ref` value hat triggered the run.
+This will send an updated row to your stream everytime the workflow runs. The row ID will be the `github.ref` value that triggered the run.
 
 Here is an example row:
+
 ```json
 {
   "ref": "refs/heads/main",
@@ -37,8 +39,8 @@ Here is an example row:
 
 ## Options
 
-| Key | Required | Value | Default | Description |
-| - | - | - | - | - |
-| haesh_stream_id | Yes | String |  | The stream ID |
-| haesh_stream_header_name | Yes | String |  | The header name of the API key |
-| haesh_stream_header_value | Yes | String |  | The header value, i.e. the secret API key itself |
+| Key                       | Required | Value  | Default | Description                                      |
+| ------------------------- | -------- | ------ | ------- | ------------------------------------------------ |
+| haesh_stream_id           | Yes      | String |         | The stream ID                                    |
+| haesh_stream_header_name  | Yes      | String |         | The header name of the API key                   |
+| haesh_stream_header_value | Yes      | String |         | The header value, i.e. the secret API key itself |
