@@ -16,6 +16,8 @@ runs:
       uses: styfle/cancel-workflow-action@0.11.0
     - name: Check out repo
       uses: actions/checkout@v3
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
     - name: Send data to hae.sh
       env:
         HAESH_STREAM_ID: ${{ inputs.haesh_stream_id }}
