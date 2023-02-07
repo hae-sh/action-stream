@@ -1,25 +1,3 @@
-# runs:
-#   steps:
-#     - name: Cancel previous runs
-#       uses: styfle/cancel-workflow-action@0.11.0
-#     - name: Check out repo
-#       uses: actions/checkout@v3
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v3
-#     - name: Install dependencies
-#       run: cd $GITHUB_ACTION_PATH && npm install
-#       shell: bash
-#     - run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
-#       shell: bash
-#     - name: Send data to hae.sh
-#       env:
-#         HAESH_STREAM_ID: ${{ inputs.haesh_stream_id }}
-#         HAESH_STREAM_HEADER_NAME: ${{ inputs.haesh_stream_header_name }}
-#         HAESH_STREAM_HEADER_VALUE: ${{ inputs.haesh_stream_header_value }}
-#       run: commit.sh
-#       shell: bash
-#   using: "composite"
-
 name: "Stream to hae.sh"
 description: Send data to a hae.sh stream
 author: "hae.sh GmbH"
