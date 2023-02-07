@@ -9,7 +9,7 @@ inputs:
   haesh_stream_header_value:
     description: The header name of the API key
     required: true
-name: 'Stream to hae.sh'
+name: "Stream to hae.sh"
 runs:
   steps:
     - name: Cancel previous runs
@@ -30,4 +30,4 @@ runs:
         HAESH_STREAM_HEADER_VALUE: ${{ inputs.haesh_stream_header_value }}
       run: commit.sh
       shell: bash
-  using: 'composite'
+  using: "composite"

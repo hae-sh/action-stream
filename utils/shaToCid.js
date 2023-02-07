@@ -1,5 +1,5 @@
-import { CID } from 'multiformats/cid';
-import { create } from 'multiformats/hashes/digest';
+import { CID } from "multiformats/cid";
+import { create } from "multiformats/hashes/digest";
 
 /**
  * Converts a git sha1 hash to a CID
@@ -8,7 +8,7 @@ import { create } from 'multiformats/hashes/digest';
  * @returns {CID} - the CID
  */
 function shaToCid(hexDigest) {
-  const buf = Buffer.from(hexDigest, 'hex');
+  const buf = Buffer.from(hexDigest, "hex");
   // 0x11 is the code for sha1
   const mh = create(0x11, buf);
   // 0x78 is the code for git-raw
@@ -18,7 +18,7 @@ function shaToCid(hexDigest) {
 const inputSha = process.argv[2];
 
 if (!inputSha) {
-  console.log('Usage: node shaToCid.js <sha>');
+  console.log("Usage: node shaToCid.js <sha>");
   process.exit(1);
 }
 
