@@ -9,12 +9,13 @@
     "package": "ncc build --source-map --license licenses.txt"
   },
   "dependencies": {
+    "@actions/core": "^1.10.0",
     "@types/node": "^16.0.0",
-    "@actions/core": "^1.10.0"
+    "axios": "^1.3.2"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.31.1",
     "@tsconfig/node16": "^1.0.3",
+    "@vercel/ncc": "^0.31.1",
     "multiformats": "^11.0.1",
     "typescript": "^4.9.5"
   }
