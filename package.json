@@ -3,7 +3,7 @@
   "repository": "git@github.com:hae-sh/action-stream.git",
   "author": "Stefan Lew <stefan.lew@hae.sh>",
   "license": "MIT",
-  "main": "lib/main.js",
+  "main": "src/main.js",
   "scripts": {
     "build": "esbuild src/main.ts --bundle --platform=node --target=node16 --packages=external --outdir=dist"
   },
