@@ -6,9 +6,9 @@ const requiredEnvKeys = [
   "GITHUB_SHA",
   "GITHUB_ACTION_REPOSITORY",
   "GITHUB_ACTION_REF",
-  "HAESH_STREAM_ID",
-  "HAESH_STREAM_HEADER_NAME",
-  "HAESH_STREAM_HEADER_VALUE",
+  "INPUT_HAESH_STREAM_ID",
+  "INPUT_HAESH_STREAM_HEADER_NAME",
+  "INPUT_HAESH_STREAM_HEADER_VALUE",
 ] as const;
 
 const isCompleteEnv = (
@@ -26,9 +26,9 @@ async function run(): Promise<void> {
     const {
       GITHUB_REF: ref,
       GITHUB_SHA: sha,
-      HAESH_STREAM_HEADER_NAME: streamHeaderName,
-      HAESH_STREAM_HEADER_VALUE: streamHeaderValue,
-      HAESH_STREAM_ID: streamId,
+      INPUT_HAESH_STREAM_HEADER_NAME: streamHeaderName,
+      INPUT_HAESH_STREAM_HEADER_VALUE: streamHeaderValue,
+      INPUT_HAESH_STREAM_ID: streamId,
       GITHUB_ACTION_REPOSITORY: actionRepository,
       GITHUB_ACTION_REF: actionRef,
     } = process.env;
