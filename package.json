@@ -1,0 +1,11 @@
+{
+  "name": "action-stream",
+  "repository": "git@github.com:hae-sh/action-stream.git",
+  "author": "Stefan Lew <stefan.lew@hae.sh>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "multiformats": "^11.0.1"
+  },
+  "packageManager": "yarn@3.4.1"
+}
