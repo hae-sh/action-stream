@@ -8,15 +8,19 @@
     "build": "tsc",
     "package": "ncc build --source-map --license licenses.txt"
   },
+  "type": "module",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@types/node": "^16.0.0",
+    "multiformats": "^11.0.1",
     "axios": "^1.3.2"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node16-strictest-esm": "^1.0.3",
     "@vercel/ncc": "^0.31.1",
-    "multiformats": "^11.0.1",
     "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": "^16.0.0"
   }
 }
