@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import { shaToCid } from "./shaToCid";
-import axios from "axios";
+import fetch from "node-fetch";
 
 async function run(): Promise<void> {
   try {
@@ -18,21 +18,22 @@ async function run(): Promise<void> {
       ref,
     } as const;
 
-    const result = await axios.post(
+    const result = await fetch(
       "http://api.dice.staging.hae.sh/streams/" +
         core.getInput("haesh_stream_id"),
-      data,
       {
+        method: "POST",
         headers: {
           [core.getInput("haesh_stream_header_name")]: core.getInput(
             "haesh_stream_header_value"
           ),
           "Content-Type": "application/json",
         },
+        body: JSON.stringify(data),
       }
-    );
+    ).then((res) => res.json());
 
-    core.setOutput("result", JSON.stringify(result.data));
+    core.setOutput("result", JSON.stringify(result));
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
   }
