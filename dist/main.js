@@ -5738,8 +5738,7 @@ var cidSymbol = Symbol.for("@ipld/js-cid/CID");
 var shaToCid = (hexDigest) => {
   const buf = Buffer.from(hexDigest, "hex");
   const mh = create(17, buf);
-  const cid = CID.create(1, 120, mh);
-  return cid.toString(base58btc);
+  return CID.create(1, 120, mh);
 };
 
 // node_modules/node-fetch/src/index.js
@@ -7044,9 +7043,9 @@ async function run() {
       throw new Error("HAESH_STREAM_HEADER_NAME is not set");
     if (!streamHeaderValue)
       throw new Error("HAESH_STREAM_HEADER_VALUE is not set");
-    const cid = shaToCid(sha);
+    const cid = shaToCid(sha).toString();
     const data = {
-      cid: { slash: cid },
+      cid,
       sha,
       ref
     };
