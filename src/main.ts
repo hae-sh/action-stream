@@ -4,8 +4,6 @@ import fetch from "node-fetch";
 const requiredEnvKeys = [
   "GITHUB_REF",
   "GITHUB_SHA",
-  "GITHUB_ACTION_REPOSITORY",
-  "GITHUB_ACTION_REF",
   "INPUT_HAESH_STREAM_ID",
   "INPUT_HAESH_STREAM_HEADER_NAME",
   "INPUT_HAESH_STREAM_HEADER_VALUE",
@@ -29,16 +27,11 @@ async function run(): Promise<void> {
       INPUT_HAESH_STREAM_HEADER_NAME: streamHeaderName,
       INPUT_HAESH_STREAM_HEADER_VALUE: streamHeaderValue,
       INPUT_HAESH_STREAM_ID: streamId,
-      GITHUB_ACTION_REPOSITORY: actionRepository,
-      GITHUB_ACTION_REF: actionRef,
     } = process.env;
 
     const cid = shaToCid(sha).toString();
 
-    const data = {
-      git: { cid, sha, ref },
-      haesh: { actionRef, actionRepository },
-    } as const;
+    const data = { cid, sha, ref } as const;
 
     const result = await fetch(
       "https://api.dice.staging.hae.sh/streams/" + streamId,

@@ -7029,8 +7029,6 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 var requiredEnvKeys = [
   "GITHUB_REF",
   "GITHUB_SHA",
-  "GITHUB_ACTION_REPOSITORY",
-  "GITHUB_ACTION_REF",
   "INPUT_HAESH_STREAM_ID",
   "INPUT_HAESH_STREAM_HEADER_NAME",
   "INPUT_HAESH_STREAM_HEADER_VALUE"
@@ -7047,15 +7045,10 @@ async function run() {
       GITHUB_SHA: sha,
       INPUT_HAESH_STREAM_HEADER_NAME: streamHeaderName,
       INPUT_HAESH_STREAM_HEADER_VALUE: streamHeaderValue,
-      INPUT_HAESH_STREAM_ID: streamId,
-      GITHUB_ACTION_REPOSITORY: actionRepository,
-      GITHUB_ACTION_REF: actionRef
+      INPUT_HAESH_STREAM_ID: streamId
     } = process.env;
     const cid = shaToCid(sha).toString();
-    const data = {
-      git: { cid, sha, ref },
-      haesh: { actionRef, actionRepository }
-    };
+    const data = { cid, sha, ref };
     const result = await fetch(
       "https://api.dice.staging.hae.sh/streams/" + streamId,
       {
