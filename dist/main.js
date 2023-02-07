@@ -7046,7 +7046,7 @@ async function run() {
       throw new Error("HAESH_STREAM_HEADER_VALUE is not set");
     const cid = shaToCid(sha);
     const data = {
-      cid: { "/": cid },
+      cid: { slash: cid },
       sha,
       ref
     };

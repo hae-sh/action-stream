@@ -20,7 +20,7 @@ async function run(): Promise<void> {
     const cid = shaToCid(sha);
 
     const data = {
-      cid: { "/": cid },
+      cid: { slash: cid },
       sha,
       ref,
     } as const;
