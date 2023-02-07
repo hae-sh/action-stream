@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMIT_CID=$(node utils/shaToCid.js $GITHUB_SHA)
+COMMIT_CID=$(npm run shaToCid $GITHUB_SHA)
 
 curl --request POST \
     --header "Content-Type: application/json" \

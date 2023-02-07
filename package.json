@@ -4,6 +4,9 @@
   "author": "Stefan Lew <stefan.lew@hae.sh>",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "shaToCid": "node ./utils/shaToCid.js"
+  },
   "dependencies": {
     "multiformats": "^11.0.1"
   }
