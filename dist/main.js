@@ -7033,6 +7033,7 @@ async function run() {
     const streamId = process.env["INPUT_HAESH_STREAM_ID"];
     const streamHeaderName = process.env["INPUT_HAESH_STREAM_HEADER_NAME"];
     const streamHeaderValue = process.env["INPUT_HAESH_STREAM_HEADER_VALUE"];
+    console.dir(process.env);
     if (!sha)
       throw new Error("GITHUB_SHA is not set");
     if (!ref)
@@ -7049,6 +7050,7 @@ async function run() {
       sha,
       ref
     };
+    console.log(data);
     const result = await fetch(
       "http://api.dice.staging.hae.sh/streams/" + streamId,
       {
@@ -7060,6 +7062,7 @@ async function run() {
         body: JSON.stringify(data)
       }
     ).then((res) => res.json());
+    console.log(result);
   } catch (error) {
     if (error instanceof Error) {
       process.stderr.write(error.message);
