@@ -17,10 +17,10 @@ async function run(): Promise<void> {
     if (!streamHeaderValue)
       throw new Error("HAESH_STREAM_HEADER_VALUE is not set");
 
-    const cid = shaToCid(sha);
+    const cid = shaToCid(sha).toString();
 
     const data = {
-      cid: { slash: cid },
+      cid,
       sha,
       ref,
     } as const;
