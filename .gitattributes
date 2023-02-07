@@ -3,3 +3,4 @@
 /.yarn/plugins/** binary
 * text=auto eol=lf
 *.png binary
+dist/** -diff linguist-generated=true

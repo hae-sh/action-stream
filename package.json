@@ -3,11 +3,19 @@
   "repository": "git@github.com:hae-sh/action-stream.git",
   "author": "Stefan Lew <stefan.lew@hae.sh>",
   "license": "MIT",
-  "type": "module",
+  "main": "lib/main.js",
   "scripts": {
-    "shaToCid": "node ./utils/shaToCid.js"
+    "build": "tsc",
+    "package": "ncc build --source-map --license licenses.txt"
   },
   "dependencies": {
-    "multiformats": "^11.0.1"
+    "@types/node": "^18.13.0",
+    "@actions/core": "^1.10.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1",
+    "@tsconfig/node16": "^1.0.3",
+    "multiformats": "^11.0.1",
+    "typescript": "^4.9.5"
   }
 }
