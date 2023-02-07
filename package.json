@@ -9,14 +9,13 @@
   },
   "type": "module",
   "dependencies": {
-    "@actions/core": "^1.10.0",
     "@types/node": "^16.0.0",
     "multiformats": "^11.0.1",
     "node-fetch": "^3.3.0"
   },
   "devDependencies": {
-    "esbuild": "^0.17.6",
     "@tsconfig/node16-strictest-esm": "^1.0.3",
+    "esbuild": "^0.17.6",
     "typescript": "^4.9.5"
   },
   "engines": {
