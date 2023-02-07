@@ -2,8 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
-    "rootDir": "./src"
+    "noEmit": true
   },
   "exclude": ["node_modules", "**/*.test.ts"],
   "include": ["src/**/*.ts"]
