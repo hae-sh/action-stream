@@ -1,5 +1,5 @@
 import { shaToCid } from "./shaToCid";
-import fetch from "node-fetch";
+import axios from "axios";
 
 async function run(): Promise<void> {
   try {
@@ -25,19 +25,16 @@ async function run(): Promise<void> {
       ref,
     } as const;
 
-    const result = await fetch(
+    await axios.post(
       "https://api.dice.staging.hae.sh/streams/" + streamId,
+      data,
       {
-        method: "POST",
         headers: {
           [streamHeaderName]: streamHeaderValue,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       }
-    ).then((res) => res.json());
-
-    console.log(result);
+    );
   } catch (error) {
     if (error instanceof Error) {
       process.stderr.write(error.message);
