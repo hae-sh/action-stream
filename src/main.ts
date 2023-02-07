@@ -1,28 +1,43 @@
 import { shaToCid } from "./shaToCid";
 import fetch from "node-fetch";
 
+const requiredEnvKeys = [
+  "GITHUB_REF",
+  "GITHUB_SHA",
+  "GITHUB_ACTION_REPOSITORY",
+  "GITHUB_ACTION_REF",
+  "HAESH_STREAM_ID",
+  "HAESH_STREAM_HEADER_NAME",
+  "HAESH_STREAM_HEADER_VALUE",
+] as const;
+
+const isCompleteEnv = (
+  env: NodeJS.ProcessEnv
+): env is NodeJS.ProcessEnv & Record<typeof requiredEnvKeys[number], string> =>
+  Object.entries(env).every(
+    ([key, value]) => !requiredEnvKeys.includes(key as any) || value
+  );
+
 async function run(): Promise<void> {
   try {
-    const sha = process.env["GITHUB_SHA"];
-    const ref = process.env["GITHUB_REF"];
-    const streamId = process.env["INPUT_HAESH_STREAM_ID"];
-    const streamHeaderName = process.env["INPUT_HAESH_STREAM_HEADER_NAME"];
-    const streamHeaderValue = process.env["INPUT_HAESH_STREAM_HEADER_VALUE"];
+    if (!isCompleteEnv(process.env))
+      throw new Error("Environment variables are missing");
 
-    if (!sha) throw new Error("GITHUB_SHA is not set");
-    if (!ref) throw new Error("GITHUB_REF is not set");
-    if (!streamId) throw new Error("HAESH_STREAM_ID is not set");
-    if (!streamHeaderName)
-      throw new Error("HAESH_STREAM_HEADER_NAME is not set");
-    if (!streamHeaderValue)
-      throw new Error("HAESH_STREAM_HEADER_VALUE is not set");
+    const {
+      GITHUB_REF: ref,
+      GITHUB_SHA: sha,
+      HAESH_STREAM_HEADER_NAME: streamHeaderName,
+      HAESH_STREAM_HEADER_VALUE: streamHeaderValue,
+      HAESH_STREAM_ID: streamId,
+      GITHUB_ACTION_REPOSITORY: actionRepository,
+      GITHUB_ACTION_REF: actionRef,
+    } = process.env;
 
     const cid = shaToCid(sha).toString();
 
     const data = {
-      cid,
-      sha,
-      ref,
+      git: { cid, sha, ref },
+      haesh: { actionRef, actionRepository },
     } as const;
 
     const result = await fetch(
