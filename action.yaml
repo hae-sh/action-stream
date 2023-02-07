@@ -17,9 +17,13 @@ runs:
     - name: Check out repo
       uses: actions/checkout@v3
     - name: Install node 18
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: 16.x
+    - name: Install dependencies
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash
     - name: Send data to hae.sh
