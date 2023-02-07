@@ -13,7 +13,7 @@
     "@actions/core": "^1.10.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.31.1",
+    "@vercel/ncc": "^0.36.1",
     "@tsconfig/node16": "^1.0.3",
     "multiformats": "^11.0.1",
     "typescript": "^4.9.5"
