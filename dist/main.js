@@ -5738,7 +5738,8 @@ var cidSymbol = Symbol.for("@ipld/js-cid/CID");
 var shaToCid = (hexDigest) => {
   const buf = Buffer.from(hexDigest, "hex");
   const mh = create(17, buf);
-  return CID.create(1, 120, mh);
+  const cid = CID.create(1, 120, mh);
+  return cid.toString(base58btc);
 };
 
 // node_modules/node-fetch/src/index.js
@@ -7033,7 +7034,6 @@ async function run() {
     const streamId = process.env["INPUT_HAESH_STREAM_ID"];
     const streamHeaderName = process.env["INPUT_HAESH_STREAM_HEADER_NAME"];
     const streamHeaderValue = process.env["INPUT_HAESH_STREAM_HEADER_VALUE"];
-    console.dir(process.env);
     if (!sha)
       throw new Error("GITHUB_SHA is not set");
     if (!ref)
@@ -7046,13 +7046,12 @@ async function run() {
       throw new Error("HAESH_STREAM_HEADER_VALUE is not set");
     const cid = shaToCid(sha);
     const data = {
-      cid: { "/": cid.toString() },
+      cid: { "/": cid },
       sha,
       ref
     };
-    console.log(data);
     const result = await fetch(
-      "http://api.dice.staging.hae.sh/streams/" + streamId,
+      "https://api.dice.staging.hae.sh/streams/" + streamId,
       {
         method: "POST",
         headers: {

@@ -9,8 +9,6 @@ async function run(): Promise<void> {
     const streamHeaderName = process.env["INPUT_HAESH_STREAM_HEADER_NAME"];
     const streamHeaderValue = process.env["INPUT_HAESH_STREAM_HEADER_VALUE"];
 
-    console.dir(process.env);
-
     if (!sha) throw new Error("GITHUB_SHA is not set");
     if (!ref) throw new Error("GITHUB_REF is not set");
     if (!streamId) throw new Error("HAESH_STREAM_ID is not set");
@@ -22,15 +20,13 @@ async function run(): Promise<void> {
     const cid = shaToCid(sha);
 
     const data = {
-      cid: { "/": cid.toString() },
+      cid: { "/": cid },
       sha,
       ref,
     } as const;
 
-    console.log(data);
-
     const result = await fetch(
-      "http://api.dice.staging.hae.sh/streams/" + streamId,
+      "https://api.dice.staging.hae.sh/streams/" + streamId,
       {
         method: "POST",
         headers: {
